@@ -1,0 +1,22 @@
+:PROPERTIES:
+:ID:       90face1d-f265-41bc-a7f2-bd42d8deee56
+:END:
+#+title: Hello World
+
+* C++
+
+#+BEGIN_SRC cpp
+  #include <cstdio>
+
+  int main() {
+      printf("Hello, World!");
+      return 0;
+  }
+#+END_SRC
+
+
+* Ruby
+
+#+BEGIN_SRC ruby
+  puts "Hello, World!"
+#+END_SRC

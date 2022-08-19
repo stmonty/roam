@@ -1,0 +1,16 @@
+:PROPERTIES:
+:ID:       defadca3-a82a-478e-9f87-5b73c8ecf392
+:END:
+#+title: Learning
+
+The page of things I am trying to learn. They will probably always
+be "Todo" as the learning never stops.
+
+* TODO C Compiler
+* TODO Scheme Interpreter
+* TODO C++
+* TODO Forth Interpreter (Assembly)
+* TODO Category Theory (Haskell/Scala)
+* TODO Clojure
+* TODO Group Theory
+* TODO Operating Systems

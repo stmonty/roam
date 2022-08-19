@@ -1,0 +1,4 @@
+#+TITLE: README
+
+* Zettelkasten
+Using Emacs Org-Roam package to take notes and build my own personal knowledge base. Forming my own personal wiki on the information I learn is the goal.
