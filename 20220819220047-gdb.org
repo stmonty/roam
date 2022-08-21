@@ -1,0 +1,46 @@
+:PROPERTIES:
+:ID:       57dc357a-3eb0-42cb-b5ec-443e9677a46b
+:END:
+#+title: gdb
+
+[[id:519d8e17-6088-42d0-b8ad-1068a0412dc6][cpp]]
+
+* GDB - Overview
+
+An example of calling gdb on a C++ program.
+
+#+BEGIN_SRC eshell
+  Welcome to the Emacs shell
+
+  ~/roam $ g++- main.cpp -o stepfun -g
+  ~/roam $ gdb stepfun
+#+END_SRC
+
+Once in gdb, this will insert a breakpoint at line 5 of main.cpp:
+#+begin_src
+  (gdb) break main.cpp:5
+#+end_src
+
+This will break at the function called 'main' and run the program:
+#+begin_src
+  (gdb) break main
+  (gdb) run
+#+end_src
+
+You can use the *step* command to to step by one instruction. Note that
+this will step into functions.
+You can use *finish* to step out of the function invocation.
+You can also use *next* to move down an instruction without going into a function.
+
+Inspect the current value of variables by using *info locals*.
+
+To continue execution to the next breakpoint use *continue*.
+
+* List of Useful Commands:
+
+- run
+- info locals
+- continue
+- step
+- next
+- break <file/linenum or function>

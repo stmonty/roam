@@ -1,0 +1,25 @@
+:PROPERTIES:
+:ID:       43e32e8a-502c-4f26-ad95-e3b3d4d307b4
+:END:
+#+title: twos-complement
+
+* Overview
+Convert a positive binary number into a negative binary number with the same
+value. (5 -> -5)
+
+** The Process
+Take the signed binary representation of the number:
+
+5 -> (0101)
+
+Note that it needs the extra bit to represent the sign,
+
+Invert the bits:
+
+(0101) -> (1010)
+
+And add 1:
+
+(1010) -> (1011)
+
+This will return the Two's Complement: -5.

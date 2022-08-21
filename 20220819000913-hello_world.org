@@ -14,6 +14,16 @@
   }
 #+END_SRC
 
+Alternate Version:
+
+#+begin_src cpp
+  #include <iostream>
+  int main() {
+      std::cout << "Hello, World";
+      return 0;
+  }
+#+end_src
+
 
 * Ruby
 

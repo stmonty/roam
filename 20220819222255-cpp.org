@@ -1,0 +1,13 @@
+:PROPERTIES:
+:ID:       519d8e17-6088-42d0-b8ad-1068a0412dc6
+:END:
+#+title: cpp
+
+* Compilers
+- g++ (GCC): GNU Project's famous compiler collection.
+- clang (LLVM): Apple's secret weapon.
+
+* Tools
+GNU Debugger - [[id:57dc357a-3eb0-42cb-b5ec-443e9677a46b][gdb]]
+
+[[id:7132c9bd-f8f1-4aaa-be70-48554799a8c2][cpp-types]]

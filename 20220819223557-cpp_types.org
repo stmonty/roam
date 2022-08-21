@@ -1,0 +1,84 @@
+:PROPERTIES:
+:ID:       7132c9bd-f8f1-4aaa-be70-48554799a8c2
+:END:
+#+title: cpp-types
+
+* Integer Types
+| type               | signed | 32-bit | 64-Linux/Mac | 64-Windows | printf |
+|--------------------+--------+--------+--------------+------------+--------|
+| short              | yes    |      2 |            2 |          2 | %hd    |
+| unsigned short     | no     |      2 |            2 |          2 | %hu    |
+| int                | yes    |      4 |            4 |          4 | %d     |
+| unsigned int       | no     |      4 |            4 |          4 | %u     |
+| long               | yes    |      4 |            8 |          4 | %ld    |
+| unsigned long      | no     |      4 |            8 |          4 | %lu    |
+| long long          | yes    |      8 |            8 |          8 | &lld   |
+| unsigned long long | no     |      8 |            8 |          8 | %llu   |
+
+Note that the different integers have different sizes based on OS.
+See also: [[id:43e32e8a-502c-4f26-ad95-e3b3d4d307b4][twos-complement]]
+
+Printing of an integers representation as either binary, octal, and hexadecimal
+are also possible.
+
+* Floating Point Types
+Floating point types store approximations of real numbers.
+Precision refers to how accurate a floating point number is.
+
+- *float* single precision
+- *double* double precision
+- *long double* extended precision
+
+Single precision usually means 4 bytes of precision, while double is 8 bytes.
+
+#+begin_src cpp
+  float a = 0.1F;
+  double b = 0.2;
+  long double c = 0.3L;
+  double plancks_constant = 6.62607004e-34;
+#+end_src
+
+Using *%f* will display a float with decimal digits, whereas %e displays
+the same number in scientific notation.
+
+#+begin_src cpp
+  #include <cstdio>
+  int main() {
+      double an = 6.0221409e23;
+      printf("Avogadro's Number %le %lf %lg \n", an, an, an);
+      float hp = 9.75;
+      printf("Hogwart's Platform: %e %f %g \n", hp, hp, hp);
+  }
+
+#+end_src
+
+* Character Types
+- *char* The default type. Always 1 byte. May or may not be signed.
+- *char16_t* Used for 2-byte character sets (UTF-16).
+- *char32_t* Used for 4-byte character sets (UTF-32).
+- *signed char* Same as char but always signed.
+- *unsigned char* Same as char but always unsigned.
+
+** Escape Sequences
+| value           | escape sequences |
+|-----------------+------------------|
+| Newline         | \n               |
+| Tab(Horizontal) | \t               |
+| Tab(Vertical)   | \v               |
+| Backspace       | \b               |
+| Carriage Return | \r               |
+| Form Feed       | \f               |
+| Alert           | \a               |
+| Backlash        | \\               |
+| Question Mark   | ? or \?          |
+| Single Quote    | \'               |
+| Double Quote    | \"               |
+| Null            | \0               |
+
+* std::byte Type
+
+System programmers sometimes work directly with /raw memory/ which is a collection
+of bits without a type. Use the std::byte type which is found in /<cstdio>/.
+
+
+
