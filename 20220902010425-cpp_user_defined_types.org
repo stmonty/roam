@@ -83,3 +83,43 @@ Methods have access to all of a class's members.
       int books;
   };
 #+end_src
+
+*** Access Controls
+Access controls restrict access. /Public/ and /Private/ are the two major access controls.
+
+#+begin_src cpp
+  struct Bookshop {
+      void add_book() {
+          books++;
+      }
+      bool sold(int sold_books) {
+          if (sold_books > 200) return false;
+          books = sold_books;
+      }
+      int get_sold() {
+          return books;
+      }
+  private:
+      int books;
+  };
+#+end_src
+
+** Class Keyword
+Replacing the struct keyword with class would make all members private by default.
+Except for this, they are functionally the same.
+
+** Constructors
+Constructors are special methods with special declarations.
+Constructors don't have a return type.
+
+Constructors can take arguments or no arguments:
+
+#+begin_src cpp
+  class Games {
+    Games(int num_of_games) {
+        num_games = num_of_games;
+    }  
+  };
+#+end_src
+
+*** Init
