@@ -1,0 +1,85 @@
+:PROPERTIES:
+:ID:       866748ea-0cd0-4923-985d-13c1f82fc9e0
+:END:
+#+title: cpp-user-defined-types
+
+* Enumeration Types
+The enum class followed by the type name and the listing of the values it can take.
+
+#+begin_src cpp
+  enum class Race {
+      Dinan,
+      Teklan,
+      Ivyn,
+      Moiran,
+      Camite,
+      Julian,
+      Aidan
+  };
+#+end_src
+
+To initialize an enumeration variable to a value, use the name of the type followed by two colons and the desired value:
+
+#+begin_src cpp
+  Race langobard_race = Race::Aidan;
+#+end_src
+
+
+* Plain-Old-Data Classes (PODs)
+Using the /struct/ keyword, this functions similarly to 'C' structs.
+
+#+begin_src cpp
+  struct Book {
+      char name[256];
+      int year;
+      int pages;
+      bool hardcover;
+  };
+
+  int main() {
+      Book american_psycho;
+      american_psycho.pages = 362;
+      printf("American Psycho has %d pages \n", american_psycho.pages);
+  }
+#+end_src
+
+** Usefulness
+PODs have some useful low level features in C++, as they are C compatible, and employ machine instructions
+that are highly efficient to copy or move them, and they can be efficiently represented in memory.
+C++ guarantees that members will be sequential in memory, although some implementations require members to be aligned
+along word boundaries, which depend on CPU register length. As a general rule you should order members from largest to
+smallest withihn POD definitons.
+
+* Unions
+The union is the cousin of the POD. The union is a "different view" or interpretation of the same block of memory.
+They can be useful in low level situations, such as marshalling structures that must be consistent across architectures.
+Packing bitfields and issues with C/C++ interoperation are other common uses.
+
+#+begin_src cpp
+  union Variant {
+      char string[10];
+      int integer;
+      double floating_point;
+  };
+#+end_src
+
+** Danger
+Because all members of unions are in the same place, they are prone to memory corruption bugs.
+Avoid using Unions except for the rarest of cases.
+
+* Fully Featured C++ Classes
+POD classes contain only data members, but C++ has access to classes that allow for more encapsulation through a code
+segment that describes in one place the program state and how the code modifies the state.
+
+** Methods
+Methods are member functions. They create an explicit connection among a class, its data members, and some code.
+Methods have access to all of a class's members.
+
+#+begin_src cpp
+  struct Bookshop {
+      void add_book() {
+          books++;
+      }
+      int books;
+  };
+#+end_src

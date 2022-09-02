@@ -11,3 +11,4 @@
 GNU Debugger - [[id:57dc357a-3eb0-42cb-b5ec-443e9677a46b][gdb]]
 
 [[id:7132c9bd-f8f1-4aaa-be70-48554799a8c2][cpp-types]]
+[[id:866748ea-0cd0-4923-985d-13c1f82fc9e0][cpp-user-defined-types]]
