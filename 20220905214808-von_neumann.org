@@ -1,0 +1,34 @@
+:PROPERTIES:
+:ID:       f2f6277b-48b3-4f26-8d68-ef5317212aca
+:END:
+#+title: von-neumann
+
+In the 1930's people viewed computation through theoretical mathematical examples such as
+Church's /Lambda Calculus/ or Alan Turing's /Turing Machine/. These described abstract computers.
+
+* The von Neumann Architecture
+
+*Computer architecture* describes the functionality, organization, and implementation of computer
+systems.
+
+The von Neumann architecture had two crucial advantages: it was robust (in a world where electronic
+components were highly unstable and short lived) and easy to program.
+
+** Components
+
+*Central Processing Unit (CPU)* can execute instructions fetched from *memory* by a *control unit*.
+*Arithmetic Logic Unit (ALU)* performs the needed computations.
+
++ Memory stores only bits (a unit of information, a value equal to 0 or 1)
++ Memory stores both encoded instructions and data to operate on. Thre are no means to distinguish data
+  from code: both are in fact bit strings.
++ Memory is organized into cells, which are labeled with their respective indices in a natual way.
+  The indices start at 0 and cell size may vary; modern computers take one byte (eight bits) as a memory
+  cell size. So, the 0th byte holds the first eight bits of the memory.
++ The program consists of instructions that are fetched one after another. Their execution is sequential
+  unless a special jump instruction is executed.
+
+* Assembly Language
+For a chosen processor, a programming language consisting of mnemonics for each possible binary encoded
+instruction (machine code): this is called [[id:b60f78d7-ca39-4a93-88a0-8b9ece0055e3][assembly-language]].
+
