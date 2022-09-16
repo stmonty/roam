@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       f5260721-baa7-4d17-81e2-e76fcd162fca
+:END:
+#+title: functions
+
+

@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       753cdeed-558c-480c-b57d-c29554db73a2
+:END:
+#+title: linear-equations
+
+* Properties
+- Addition is commutative.

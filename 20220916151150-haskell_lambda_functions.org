@@ -1,0 +1,39 @@
+:PROPERTIES:
+:ID:       982307f2-d2a6-4c5f-b608-00bdd4a475c5
+:END:
+#+title: haskell-lambda-functions
+
+* Lambda Functions
+
+In Haskell, the /lambda function/ is one of the most fundamental tools.
+They are the minimum possible function: they take a value and return a value.
+
+Let's look at an example:
+
+#+begin_src haskell
+  sumSquareOrSquareSum x y = if sumSquare > squareSum
+                             then sumSquare
+                             else squareSum
+    where sumSquare = x^2 + y^2
+               squareSum = (x+y)^2
+#+end_src
+
+This function can be rewritten with a lambda function, in some ways this is as if the /where/
+clause was being written.
+
+#+begin_src haskell
+      sumSquareOrSquareSum x y = (\sumSquare squareSum ->
+                                     if sumSquarfe > squareSum
+                                     then sumSquare
+                                     else squareSum) (x^2 + y^2) ((x+y)^2)
+#+end_src
+
+* Lexical Scoping and IIFE
+
+Wrapping code with a lambda functiono then calling that function to keep it safe is called:
+/immediately invoked function expression/ (IIFE).
+
+Whenever you create a new function, named or not, you create a new scope, which is the
+context in which a variable is defined. When a variable is used, the program looks at the
+nearest scope; if the definition of the variable isn't there, it goes to the next one up. This is
+/lexical scoping/.

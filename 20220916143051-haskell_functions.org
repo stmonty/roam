@@ -1,0 +1,30 @@
+:PROPERTIES:
+:ID:       f67a5370-a2e6-46a6-b3b4-93b6bd32820b
+:END:
+#+title: haskell-functions
+
+* Functions
+
+A function in Haskell comes directly from mathematics. For example, the function /f(x) = y/
+meaning there is some function /f/ that takes a parameter /x/ and maps this to a value /y/.
+
+All functions in Haskell follow three-rules that force them to behave like functions in math:
+- All functions must take an arugment.
+- All functions must return a value.
+- Anytime a function is called with the same argument, it must return the same value.
+
+  The third rule is called /referential transparency/.
+
+* A Brief History
+
+Alonzo Church attempted to create a system of logic called [[id:96e71019-dc13-4b7b-908d-28ff42ebd7e2][lambda-calculus]].
+Church's goal was to initially resolve some problems in the mathematical field of set theory.
+Unfortunately, it did not solve these problems, but did create something more interesting.
+
+Lambda calculus allows for a universal model of computation equivalent to a [[id:b5416f17-5230-4610-a76e-408f43a9015f][turing machine]]!
+
+See also: [[id:13dfea0f-ab69-416d-ba1e-7a288adc40b5][Church-Turing Thesis]]
+
+
+
+

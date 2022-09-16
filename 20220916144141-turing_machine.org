@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       b5416f17-5230-4610-a76e-408f43a9015f
+:END:
+#+title: turing machine
+

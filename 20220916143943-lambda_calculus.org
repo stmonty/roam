@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       96e71019-dc13-4b7b-908d-28ff42ebd7e2
+:END:
+#+title: lambda-calculus
+
