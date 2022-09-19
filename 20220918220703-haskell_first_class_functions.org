@@ -1,0 +1,65 @@
+:PROPERTIES:
+:ID:       9fcfa384-28b8-4a2f-b620-d6a5a0fcaa34
+:END:
+#+title: haskell-first-class-functions
+
+* First Class Functions
+
+The general idea of the first-class function is that functions are no different from any other data used in
+a program. Functions can be used as arguments and returned as values from other functions.
+
+This allows for the abstraction of repetitive computation from your code, and ultimately allows for functions
+that write other functions.
+
+#+begin_src haskell
+  ifEvenInc n = if even n
+                then n + 1
+                else n
+
+
+  ifEvenDouble n = if even n
+                   then n * 2
+                   else n
+
+  ifEvenSquare n = if even n
+                   then n^2
+                   else n
+#+end_src
+
+All three of these methods are simple, but repeat a lot of the same code.
+
+#+begin_src haskell
+  ifEven myFunction x = if even x
+                        then myFunction x
+                        else x
+
+  inc n = n + 1
+  double n = n * 2
+  square n = n^2
+
+  ifEvenInc n = ifEven inc n
+  ifEvenDouble n = ifEven double n
+  ifEvenSquare n = ifEven square n
+#+end_src
+
+* Lambda Functions as Arguments
+
+Naming functions is generally a good idea, but you can also use lambda functions to quickly add code to pass into a function.
+If you want to double the value, you can quickly put togethera lambda function for this:
+
+Although named functions are preferred, many times you'll want to pass in simple functionality.
+
+If we wanted to sort this list of functions:
+#+begin_src haskell
+  import Data.List
+
+  names = [("Ian", "Curtis"),
+           ("Bernard", "Summer"),
+           ("Peter", "Hook"),
+           ("Stephen", "Morris")]
+
+  -- We could use the sort function in Data.List 
+  sort names
+  -- However, this only sorts by first names
+  
+#+end_src

@@ -10,3 +10,5 @@
 
 - [[id:f67a5370-a2e6-46a6-b3b4-93b6bd32820b][haskell-functions]]
 - [[id:982307f2-d2a6-4c5f-b608-00bdd4a475c5][haskell-lambda-functions]]
+- [[id:9fcfa384-28b8-4a2f-b620-d6a5a0fcaa34][haskell-first-class-functions]]
+
