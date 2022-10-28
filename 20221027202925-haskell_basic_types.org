@@ -1,0 +1,105 @@
+:PROPERTIES:
+:ID:       fbe91a79-03b9-402d-b570-da3c35d0eab6
+:END:
+#+title: haskell-basic-types
+
+* Types
+In Haskell all expressions have a type, which is calculated prior to the evaluation
+by a process called /type inference/.
+** Bools
+A value that represents the two logical values /False/ and /True/.
+
+#+begin_src haskell
+  False :: Bool
+  True :: Bool
+  not :: Bool -> Bool
+#+end_src
+
+** Char
+Contains all single characters in the Unicode system. Enclosed by a single quote.
+
+** String
+All sequences of characters, such as "abc" or "1+2+3". This also includes
+the empty string "".
+
+** Int
+Fixed precision integers with a fixed amount of memory being used in the storage.
+For example GHC system has values of /Int/ in the range of -2^63 to 2^63 - 1.
+
+** Integer
+Arbitrary precision integers, with as much memory as needed for storage.
+Apart from the different memory usages of /Int/ and /Integer/, the choice between
+the two types is also one of performance.
+In particular, most computers have built in hardware for fixed-precision integers.
+
+** Float
+This type contains numbers with a decimal point such as -14.53, with a fixed amount of memory.
+
+** Double
+Similar to /float/ except given twice the memory and storage to increase precision.
+
+* List Types
+A /list/ is a sequence of /elements/ of the same type.
+We write [T] for type of all lists whose elements have tupe T.
+
+#+begin_src haskell
+  [False,True,False] :: [Bool]
+  ['a','b','c','d']  :: [Char]
+  ["One","Two","Three"] :: [String]
+#+end_src
+
+* Tuple Types
+A /tuple/ is a finite sequence of components of possibly different types with the components
+being enclosed in round parenthesis and separated by commas.
+
+#+begin_src haskell
+  (False,True) :: (Bool,Bool)
+  (False,'a',True) :: (Bool,Char,Bool)
+  ("Yes",True,'a') :: (String,Bool,Char)
+#+end_src
+
+* Function Types
+A /function/ is a mapping from arguments of one type to results of another type.
+We write T1 -> T2 for the type of all functions athat map arguments of type T1 to
+results of T2.
+
+#+begin_src haskell
+  add :: (Int, Int) -> Int
+  add (x,y) = x+y
+
+  zeroto :: Int -> [Int]
+  zeroto n = [0..n]
+#+end_src
+
+** Curried Functions
+Functions with multiple arguments can also be handled in another, perhaps less
+obvious way, by exploiting the fact that functions are free to return functions
+as results.
+For example:
+#+begin_src haskell
+  add' :: Int -> (Int -> Int)
+  add' x y = x+y
+  add :: (Int, Int) -> Int
+#+end_src
+The type states that add' is a function that takes an argument of type Int and
+returns a result that is a function of type /Int -> Int/.
+
+More precisely it is saying that *add'* takes an integer x and returns a function,
+which in turn takes an integer y and returns the result x+y.
+
+Note that the function *add'* produces the same result as the function *add*.
+However, *add* takes two arguments as a pair, while *add'* takes them one at a time.
+This is reflected in their function signatures.
+
+* Polymorphic Types
+The library function /length/ calculates the length of any list, irrespective of the
+type of the elements of the list. For example, it can be used to calculate the length
+of a list of integers, a list of strings, or even a list of functions.
+
+#+begin_src haskell
+  length :: [a] -> Int
+#+end_src
+
+The type of a polymorphic function often gives a strong indication about the function's
+behavior. For example, from type [a] -> [b] -> [(a,b)] we can conclude the /zip/ function
+pairs up elements of two lists.

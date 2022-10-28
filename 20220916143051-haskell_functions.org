@@ -25,6 +25,62 @@ Lambda calculus allows for a universal model of computation equivalent to a [[id
 
 See also: [[id:13dfea0f-ab69-416d-ba1e-7a288adc40b5][Church-Turing Thesis]]
 
+* Methods of Constructing Functions
+
+The most straightforward way is combining one or more existing functions.
++ Decide if an integer is even:
+  #+begin_src haskell
+  even :: Integral a => a -> Bool
+  even n = n 'mod' 2 == 0
+  #+end_src
+
++ Split a list at the nth element
+  #+begin_src haskell
+  splitAt :: Int -> [a] -> ([a],[a])
+  splitAt n xs = (take n xs, drop n xs)
+  #+end_src
+
+** Conditonal Expressions
+Haskell provides a range of different ways to define functions that choose
+between a number of possible results. The simplest are /conditonal expressions/
+which use a logical expressions called a /condition/ to choose between two results of
+same type.
+
+#+begin_src haskell
+  signum :: Int -> Int
+  signum n = if n < 0 then -1 else
+               if n == 0 then 0 else 1
+#+end_src
+
+** Guarded Equations
+As an alternative, guarded equations in which a sequence of logical expressions
+called guards is used to choose between a sequence of results of the same type.
+
+The symbol "|" is read as "such that" and the guard *otherwise* is defined in the standard
+prelude simply as *otherwise = True*.
+
+#+begin_src haskell
+  signum :: Int -> Int
+  signum n | n < 0 = -1
+           | n == 0 = 0
+           | otherwise = 1
+#+end_src
+
+** Pattern Matching
+Many functions have a simple an intuitive definiton using pattern matching.
+/Patterns/ are sequences of syntactic expressions used to choose between a sequence of
+results of the same type.
+
+If the first pattern is matched, then the first result is chosen, and so on.
+
+/not/ can be defined as:
+#+begin_src haskell
+  not :: Bool -> Bool
+  not True = False
+  not False = True
+#+end_src
 
 
+** Lambda Expressions
 
+[[id:982307f2-d2a6-4c5f-b608-00bdd4a475c5][haskell-lambda-functions]]

@@ -1,0 +1,13 @@
+:PROPERTIES:
+:ID:       4be852a8-cfae-4cfa-96e1-890d03ad4c9b
+:END:
+#+title: haskell-list-comprehensions
+
+List comprehensions are used to contruct new lists from existing lists.
+
+#+begin_src haskell
+  [x^2 | x <- [1..5]]
+  -- Returns [1,4,9,16,25]
+#+end_src
+
+The symbol | represents "such that" while <- is read as "drawn from."
