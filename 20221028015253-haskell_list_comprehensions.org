@@ -3,6 +3,7 @@
 :END:
 #+title: haskell-list-comprehensions
 
+* Basics
 List comprehensions are used to contruct new lists from existing lists.
 
 #+begin_src haskell
@@ -11,3 +12,58 @@ List comprehensions are used to contruct new lists from existing lists.
 #+end_src
 
 The symbol | represents "such that" while <- is read as "drawn from."
+
+The expression "x <- [1..5]" is called a /generator/.
+A list comprehension can have more than one generator, all being separated by commas.
+
+#+begin_src haskell
+  [(x,y) | x <- [1,2,3], y <- [4,5]]
+  -- Returns [(1,4),(1,5),(2,4),(2,5),(3,4),(3,5)]
+#+end_src
+
+With multiple generators, one can think of it being more deeply nested, and
+hence later generators change the values of their variables more frequently.
+
+#+begin_src haskell
+  concat :: [[a]] -> [a]
+  concat xss = [x | xs <-- xss, x <-xs]
+
+  firsts :: [(a,b)] -> [a]
+  firsts ps = [x | (x,_) <- ps]
+
+  length :: [a] -> Int
+  length xs = sum [1 | _ <- xs]
+#+end_src
+
+* Guards
+List comprehensions can also use logical expressions called guards to filter the
+values produced by earlier generators.
+
+#+begin_src haskell
+  factors :: int -> [Int]
+  factors n = [x | x <- [1..n], n 'mod' x == 0]
+
+  factors 15
+  [1,3,5,15]
+
+  prime :: Int -> Bool
+  prime n = factors n == [1,n]
+
+  -- Now we can use 'prime' and list comprehension to make a basic primes
+  primes :: Int -> [Int]
+  primes n = [x | x <- [2..n], prime x]
+
+  primes 20
+  [2,3,5,7,11,13,17,19]
+#+end_src
+ 
+* The /zip/ function
+
+The library function /zip/ produces a new list by pairing successive elements from
+two existing lists until either or both lists are exhausted. For example:
+
+>zip ['a','b','c'] [1,2,3,4]
+ [('a',1),('b',2),('c',3)]
+
+The function is useful when programming with list comprehensions.
+
