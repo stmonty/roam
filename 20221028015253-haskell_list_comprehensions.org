@@ -67,3 +67,75 @@ two existing lists until either or both lists are exhausted. For example:
 
 The function is useful when programming with list comprehensions.
 
+* The Caesar Cipher
+Let us make a Caesar cipher to test out list comprehensions.
+
+"haskell is fun" -> "kdvnhoo lv ixq" with a shift-factor of 3.
+
+** Encoding and Decoding
+
+Standard functions on characters can be found in:
+
+/import Data.char/
+
+#+begin_src haskell
+  let2int :: Char -> Int
+  let2int c = ord c ord 'a'
+
+  int2let :: Int -> Char
+  int2let n = chr (ord 'a' + n)
+#+end_src
+
+The library functions /ord/ and /chr/ convert between unicode characters and unicode
+numbers.
+
+Using the two functions defined above, we can build a function *shift* that applies a shift
+factor to a lower-case character by converting the letter into the corresponding integer,
+adding on the shift factor and taking the remainder when divided by twenty-six, and
+then converting back into a lower-case letter.
+
+#+begin_src haskell
+  shift :: Int -> Char -> Char
+  shift n c | isLower c = int2let ((let2int c + n) 'mod' 26)
+            | otherwise = c
+#+end_src
+
+Using *shift* with a list comprehension, it is now easy to define a function that encodes
+a string using a given shift factor:
+
+#+begin_src haskell
+  encode :: Int -> String -> String
+  encode n xs = [shift n x | x <- xs]
+#+end_src
+
+** Frequency Tables
+
+The key to cracking the cipher is the observation that some letters are used more
+frequently than others in English text. By analysing a large volume of such text,
+one can derive the following table:
+
+#+begin_src haskell
+  table :: [Float]
+  table = [8.1, 1.5, 2.8, 4.2, 12.7, 2.2, 2.0, 6.1, 7.0,
+  0.2, 0.8, 4.0, 2.4, 6.7, 7.5, 1.9, 0.1, 6.0, 6.3, 9.0, 2.8, 1.0, 2.4, 0.2, 2.0, 0.1]
+#+end_src
+
+As you can see, the letter 'e' is the most frequent, with 12.7% while 'q' and 'z' are
+the least frequent at just 0.1%. Making a function that calculates the percentage of
+one integer with respect to another:
+
+#+begin_src haskell
+  percent :: Int -> Int -> Float
+  percent n m = (fromIntegral n / fromIntegral m) * 100
+
+  -- the function fromIntegral :: Int -> Float converts an integer into floating point
+#+end_src
+
+Using list comprehension we can make a function that can make a frequency table for
+any string:
+
+#+begin_src haskell
+  freqs :: String -> [Float]
+  freqs xs = [percent (count x xs) n | x <- ['a'..'z']]
+    where n = lowers xs
+#+end_src
