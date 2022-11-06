@@ -1,0 +1,41 @@
+:PROPERTIES:
+:ID:       69aa500a-9a98-4c97-95af-0375de59e59e
+:END:
+#+title: x86-hello-world
+
+* Writing Hello World
+
+** Basic IO
+
+An operating system's purpose is among other things to abstact and manage resources.
+It provides a routine to handle other programs, external devices, etc.
+A program is usually not allowed to bypass the operating system and interact with the
+resources of the computer and must instead interact with [[id:85f1c3b8-c974-4f63-b167-53d00d87ba33][system-calls]].
+
+Unix identifies a file with a [[id:87b6e22c-6f15-456f-95a3-72a7fc7d26d0][file descriptor]]. A file is opened by invoking the *open* system call.
+
+Three important files are opened as soon as a program starts and thus should not be
+managed manually: *stdout*, *stderr*, *stdin*.
+By default, keyboard input is linked to stdin and terminal output is linked to stdout.
+
+Thus we need to invoke the *write* system call. It writes a given amount of bytes from
+memory starting a given address to a file with a given descriptor.
+The bytes will encode for string characters using an ASCII table.
+
+#+begin_src asm
+      global_start
+
+      section .data
+  message: db 'hello, world!', 10
+
+      section .text
+  _start:
+      mov rax, 1                  ; System call number should be stored in rax
+      mov rdi, 1                  ; Argument #1 in rdi: where to write
+      mov rsi, message            ; Argument #2 in rsi: where the string starts
+      mov rdx, 14                 ; Argument #3 in rdx: how many bytes to write
+      syscall                     ; Invoke system call 
+#+end_src
+
+
+

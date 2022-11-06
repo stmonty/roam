@@ -1,0 +1,91 @@
+:PROPERTIES:
+:ID:       1ca907f1-d785-48e1-adb1-3114a5639df0
+:END:
+#+title: haskell-recursion
+
+* Basic Concepts
+
+In Haskell, it is permissible to define functions in terms of themselves. This
+is called a /recursive/ function.
+
+Look at the example below of the same function defined in two ways:
+#+begin_src haskell
+  fac :: Int -> Int
+  fac n = product [1..n]
+
+  fac :: Int -> Int
+  fac 0 = 1
+  fac n = n * fac (n - 1)
+#+end_src
+
+In the recursive definition, 'fac 0 = 1' is called the /base case/.
+
+* Recursion on Lists
+Recursion is not restricted to functions on integers, but can also be used on lists.
+
+#+begin_src haskell
+  product :: Num a => [a] -> a
+  product [] = 1
+  product (n:ns) = n * product ns
+#+end_src
+The first part is the base case, showing that the empty list is one, which
+makes sense based on the identity function of multiplication.
+
+Haskell lists are constructed one element at a time using the cons operator.
+Therefore the 'length' function:
+#+begin_src haskell
+  length :: [a] -> Int
+  length [] = 0
+  length (_:xs) = 1 + length xs
+#+end_src
+
+** Examples:
+
+#+begin_src haskell
+  insert :: Ord a => a -> [a] -> [a]
+  insert x [] = [x]
+  insert x (y:ys) | x <= y = x : y : ys
+                  | otherwise = y : insert x ys
+
+  isort :: Ord a => [a] -> [a]
+  isort [] = []
+  isort (x:xs) = insert x (isort x)
+#+end_src
+
+* Multiple Recursion
+
+Functions can also be defined using multiple recursion, in which a function is applied more than
+once in its own definition. For example, the Fibonacci sequence or Quicksort.
+
+#+begin_src haskell
+  fib :: Int -> Int
+  fib 0 = 0
+  fib 1 = 1
+  fib n = fib (n-2) + fib (n-1)
+
+  qsort :: Ord a => [a] -> [a]
+  qsort [] = []
+  qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
+    where
+      smaller = [a | a <- xs, a <= x]
+      larger  = [b | b <- xs, b > x]
+
+#+end_src
+
+* Mutual Recursion
+
+Functions can also be defined using /mutual recursion/ in which two or more functions are
+all defined recursively in terms of each other.
+For example, consider even and odd. For efficiency, these functions are usually
+defined using the remainder after dividing by two.
+An alternate implementation:
+#+begin_src haskell
+  even :: Int -> Bool
+  even 0 = True
+  even n = odd (n-1)
+
+  odd :: Int -> Bool
+  odd 0 = False
+  odd n = even (n-1)
+#+end_src
+

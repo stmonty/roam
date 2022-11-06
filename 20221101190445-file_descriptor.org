@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       87b6e22c-6f15-456f-95a3-72a7fc7d26d0
+:END:
+#+title: file descriptor
+

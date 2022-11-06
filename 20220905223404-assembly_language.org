@@ -3,4 +3,8 @@
 :END:
 #+title: assembly-language
 
+* x86_64
+
+[[id:69aa500a-9a98-4c97-95af-0375de59e59e][x86-hello-world]]
+
 

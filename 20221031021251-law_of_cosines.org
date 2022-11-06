@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       3f641bd6-e58b-4e53-bc52-2f2dbd803980
+:END:
+#+title: law of cosines
+
+* The Law of Cosines
+
+#+begin_src haskell
+  -- | square a number
+  square :: Num n => n -> n
+  square x = x * x
+
+  lawOfCosines :: Double -> Double -> Double -> Double
+  lawOfCosines a b gamma = sqrt (square a + square b - (2 * a * b * cos (degreesToRadians gamma)))
+
+  degreesToRadians :: Double -> Double
+  degreesToRadians deg = deg * (pi / 180)
+#+end_src
