@@ -1,0 +1,34 @@
+:PROPERTIES:
+:ID:       40aefa83-95b0-4b8e-a00a-02c7c18ddd46
+:END:
+#+title: haskell-types-classes
+
+* Type Declarations
+The simplest way of declaring a new type is to introduce a new name for an existing type,
+using the *type* mechanism of Haskell.
+For example, the type *String* is just a list of characters:
+#+begin_src haskell
+  type String = [Char]
+#+end_src
+Note that new types must be capitalized.
+Types cannot be recursively defined: *type Tree = (Int, [Tree])* would not be valid.
+However, [[id:45e86d7c-12bf-40fd-ac04-aa53e1fbcc93][haskell-data-type]] can be defined this way.
+
+Finally, type declarations with more than one parameter are possible too. For examlple,
+a type of lookup table that associate kets of one type to values of another type
+can be declared as a list of (key,value) pairs.
+
+#+begin_src haskell
+  type Assoc k v = [(k,v)]
+  find :: Eq k => k -> Assoc k v -> v
+  find k t = head [v | (k',v) <- t, k == k']
+#+end_src
+
+* Data Declarations
+A completely new type, as opposed to a synonym for an existing type, can be declared
+by specifying its values using the data mechanism in Haskell.
+
+For example: The prelude defines /Bool/ as:
+#+begin_src haskell
+  data Bool = False | True
+#+end_src

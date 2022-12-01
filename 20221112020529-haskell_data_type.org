@@ -1,0 +1,5 @@
+:PROPERTIES:
+:ID:       45e86d7c-12bf-40fd-ac04-aa53e1fbcc93
+:END:
+#+title: haskell-data-type
+
